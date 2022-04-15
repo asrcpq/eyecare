@@ -30,7 +30,7 @@ fn handle_client(mut stream: UnixStream, ecman: EcManagerRef) {
 fn main() -> std::io::Result<()> {
 	let _ = std::fs::remove_file("eyecare.sock");
 	let listener = UnixListener::bind("eyecare.sock")?;
-	let ecman = EcManager::load_to_ref("score.txt");
+	let ecman = EcManager::new_ref();
 
 	for stream in listener.incoming() {
 		let ecman = ecman.clone();
