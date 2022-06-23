@@ -28,12 +28,14 @@ impl EcRef {
 			{
 				let mut ec = self.ec.lock().unwrap();
 				if ec.rest {
-					ec.score -= 5.0;
+					if ec.score > 3600.0 {
+						ec.score -= 3.0;
+					} else {
+						ec.score -= 5.0;
+					}
 					if ec.score < 0.0 {
 						ec.score = 0.0;
 					}
-				} else if ec.score > 3600.0 {
-					ec.score += 2.0;
 				} else {
 					ec.score += 1.0;
 				}
