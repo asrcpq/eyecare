@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source ~/.cargo/env
 cd "$(dirname "$0")/.."
-cargo run --release
+mkdir -p "$XDG_DATA_HOME/eyecare"
+cargo run --release -- "$XDG_DATA_HOME/eyecare/eyecare.sock"

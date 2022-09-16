@@ -27,8 +27,13 @@ fn handle_client(mut stream: UnixStream, ec: EcRef) {
 }
 
 fn main() -> std::io::Result<()> {
-	let _ = std::fs::remove_file("eyecare.sock");
-	let listener = UnixListener::bind("eyecare.sock")?;
+	let sockfile = {
+		let mut iter = std::env::args();
+		iter.next();
+		iter.next().unwrap()
+	};
+	let _ = std::fs::remove_file(&sockfile);
+	let listener = UnixListener::bind(&sockfile)?;
 	let ec = EcRef::default();
 	{
 		let ec = ec.clone();
