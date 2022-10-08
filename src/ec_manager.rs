@@ -29,9 +29,9 @@ impl EcRef {
 				let mut ec = self.ec.lock().unwrap();
 				if ec.rest {
 					if ec.score > 3600.0 {
-						ec.score -= 3.0;
-					} else {
 						ec.score -= 5.0;
+					} else {
+						ec.score -= 11.0;
 					}
 					if ec.score < 0.0 {
 						ec.score = 0.0;
